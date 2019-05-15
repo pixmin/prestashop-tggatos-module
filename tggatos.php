@@ -845,7 +845,7 @@ class TggAtos extends PaymentModule
 		if (is_null($response))
 			throw new InvalidArgumentException('$response must be not null');
 		$this->logResponse($response);
-		$this->context->cart = new Cart((int)$response->order_id);
+		$this->context->cart = Cart::getCartByOrderId((int)$response->order_id);
 		if (!Validate::isLoadedObject($this->context->cart))
 			throw new PrestaShopModuleException('Payment cart cannot be loaded');
 		if (is_null($this->context->link))
